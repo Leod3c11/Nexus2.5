@@ -957,7 +957,7 @@
 		sibling-cpus = "6-7";
 		down-step = <1>;
 
-		max-freq-wo-ocp = <2002000>;
+		max-freq-wo-ocp = <3016000>;
 
 		release-mode = <1>;             /* 0 : current meter, 1 : cpu utilization */
 		release-threshold = <50>;       /* @current meter : current(A), @cpu load : capacity ratio(%) */
@@ -1058,21 +1058,21 @@
 
 		/* FPS */
 		frame-src = < 0 >;
-		max-fps = < 600 >;
-		user-target-fps = < 600 >;
-		uncontrol-fps-delta-up = < 30 >;
-		uncontrol-fps-delta-down = < (-10) >;
-		dt-ctrl-en = < 1 >;
-		dt-over-thr = < 20 >;
-		dt-under-thr = < 10 >;
-		dt-up-step = < 10 >;
-		dt-down-step =  < 10 >;
-		dpat-upper-bound-thr = < 9000000 >;
+		max-fps = < 1200 >;
+		user-target-fps = < 1200 >;
+		uncontrol-fps-delta-up = < 1000 >;
+		uncontrol-fps-delta-down = < (-1000) >;
+		dt-ctrl-en = < 0 >;
+		dt-over-thr = < 1000 >;
+		dt-under-thr = < 0 >;
+		dt-up-step = < 100 >;
+		dt-down-step =  < 0 >;
+		dpat-upper-bound-thr = < 99999999 >;
 		dpat-lower-bound-thr = < 0 >;
-		dpat-lower-cnt-thr = < 1 >;
-		dpat-up-step = < 10 >;
-		dpat-down-step = < 10 >;
-		v-max-fps-count = < 30 >;
+		dpat-lower-cnt-thr = < 0 >;
+		dpat-up-step = < 100 >;
+		dpat-down-step = < 0 >;
+		v-max-fps-count = < 1 >;
 
 		cl0 {
 			max = < 200 >;
@@ -1094,7 +1094,7 @@
 			stall-pct-thr = < 0 >;		/* temp */
 			pm-qos-min-class = <5>;
 			pm-qos-max-class = <6>;
-			pm-qos-max-freq = < 2210000 >;
+			pm-qos-max-freq = < 2600000 >;
 		};
 		cl2 {
 			max = < 200 >;
@@ -1105,7 +1105,7 @@
 			stall-pct-thr = < 0 >;		/* temp */
 			pm-qos-min-class = <7>;
 			pm-qos-max-class = <8>;
-			pm-qos-max-freq = < 1898000 >;
+			pm-qos-max-freq = < 3016000 >;
 		};
 		gpu {
 			max = < 220 >;
