@@ -16,7 +16,7 @@
  *
  * Computes: floor(sqrt(x))
  */
-Inline unsigned long int_sqrt(unsigned long x)
+inline unsigned long int_sqrt(unsigned long x)
 {
 	register unsigned long tmp;
  	register unsigned long place;
