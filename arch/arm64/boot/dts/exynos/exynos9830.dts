@@ -421,14 +421,14 @@
 				efficiency-weight-perf = <200>;
 			};
 			LION_ENERGY: lion-energy {
-				mips-per-mhz = <806>;
-				power-coefficient = <860>;
-				mips-per-mhz-s = <285>;
-				power-coefficient-s = <559>;
-				static-power-coefficient = <270>;
+				mips-per-mhz = <673>;
+				power-coefficient = <370>;
+				mips-per-mhz-s = <335>;
+				power-coefficient-s = <288>;
+				static-power-coefficient = <81>;
 
-				efficiency-weight = <33>;
-				efficiency-weight-perf = <300>;
+				efficiency-weight = <200>;
+				efficiency-weight-perf = <200>;
 			};
 		};
 	};
