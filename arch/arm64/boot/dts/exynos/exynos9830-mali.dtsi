@@ -25,7 +25,7 @@
 		g3d_genpd_name = "pd-embedded_g3d";
 		#cooling-cells = <2>; /* min followed by max */
 		governor = "interactive";
-		interactive_info = <897000 94 0>;
+		interactive_info = <897000 99 0>;
 		gpu_dvfs_table_size = <14 8>; /*<row col>*/
 		/*  8 columns      freq  down   up  stay  mif   little  middle   big  */
 		gpu_dvfs_table = <
@@ -43,7 +43,7 @@
 			325000    78   90   1  2730000        0       0       0
 			260000    78   93   1  2730000        0       0       0
 			156000     0   93   1  2730000        0       0       0 >;
-		gpu_sustainable_info = <897000 85 0 0 0>;
+		gpu_sustainable_info = <897000 99 0 0 0>;
 		gpu_pmu_status_reg_offset = <0x2204>;
 		gpu_pmu_status_local_pwr_mask = <0x1>; /*0x1 << 0*/
 		gpu_max_clock = <897000>;
