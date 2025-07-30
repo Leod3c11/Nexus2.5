@@ -401,9 +401,9 @@
 
 		energy-data {
 			ANANKE_ENERGY: ananke-energy {
-				mips-per-mhz = <270>;
-				power-coefficient = <120>;
-				mips-per-mhz-s = <184>;
+				mips-per-mhz = <380>;
+				power-coefficient = <80>;
+				mips-per-mhz-s = <380>;
 				power-coefficient-s = <106>;
 				static-power-coefficient = <39>;
 
@@ -411,9 +411,9 @@
 				efficiency-weight-perf = <200>;
 			};
 			ENYO_ENERGY: enyo-energy {
-				mips-per-mhz = <673>;
-				power-coefficient = <370>;
-				mips-per-mhz-s = <335>;
+				mips-per-mhz = <900>;
+				power-coefficient = <517>;
+				mips-per-mhz-s = <900>;
 				power-coefficient-s = <288>;
 				static-power-coefficient = <81>;
 
@@ -421,9 +421,9 @@
 				efficiency-weight-perf = <200>;
 			};
 			LION_ENERGY: lion-energy {
-				mips-per-mhz = <673>;
-				power-coefficient = <370>;
-				mips-per-mhz-s = <335>;
+				mips-per-mhz = <900>;
+				power-coefficient = <517>;
+				mips-per-mhz-s = <900>;
 				power-coefficient-s = <288>;
 				static-power-coefficient = <81>;
 
