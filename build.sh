@@ -17,7 +17,7 @@ Options:
     -m, --model [value]    Specify the model code of the phone
     -k, --ksu [y/N]        Include KernelSU
     -r, --recovery [y/N]   Compile kernel for an Android Recovery
-    -d, --dtbs [y/N]	   Compile only DTBs
+    -d, --dtbs [y/N]       Compile only DTBs
 EOF
 }
 
@@ -39,7 +39,7 @@ while [[ $# -gt 0 ]]; do
             DTB_OPTION="$2"
             shift 2
             ;;
-        *)\
+        *)
             unset_flags
             exit 1
             ;;
@@ -121,15 +121,32 @@ if [[ "$RECOVERY_OPTION" == "y" ]]; then
 fi
 
 if [ -z $KSU_OPTION ]; then
-    read -p "Include KernelSU (y/N): " KSU_OPTION
+    read -p "Include KernelSU Next (y/N): " KSU_OPTION
 fi
 
 if [[ "$KSU_OPTION" == "y" ]]; then
     KSU=ksu.config
+    KSU_NEXT_URL="https://github.com/KernelSU-Next/KernelSU-Next/archive/2241696498ce9dd742ce80b52c3ed6cca26e03ea.tar.gz"
+    KSU_NEXT_DIR="$PWD/KernelSU-Next"
+
+    if [ ! -d "$KSU_NEXT_DIR" ]; then
+        echo "-----------------------------------------------"
+        echo "KernelSU Next not found! Downloading..."
+        echo "-----------------------------------------------"
+        mkdir -p "$KSU_NEXT_DIR"
+        pushd "$KSU_NEXT_DIR" > /dev/null
+        curl -L "$KSU_NEXT_URL" -o ksu_next.tar.gz
+        tar -xzf ksu_next.tar.gz --strip-components=1
+        rm ksu_next.tar.gz
+        popd > /dev/null
+    fi
+
+    # Adicionar o caminho do KernelSU Next ao make
+    MAKE_ARGS="$MAKE_ARGS KSU_NEXT_DIR=$KSU_NEXT_DIR"
 fi
 
 if [[ "$DTB_OPTION" == "y" ]]; then
-	DTBS=y
+    DTBS=y
 fi
 
 rm -rf build/out/$MODEL
@@ -140,9 +157,9 @@ mkdir -p build/out/$MODEL/zip/META-INF/com/google/android
 echo "-----------------------------------------------"
 echo "Defconfig: "$KERNEL_DEFCONFIG""
 if [ -z "$KSU" ]; then
-    echo "KSU: N"
+    echo "KSU Next: N"
 else
-    echo "KSU: $KSU"
+    echo "KSU Next: Y"
 fi
 if [ -z "$RECOVERY" ]; then
     echo "Recovery: N"
@@ -209,14 +226,14 @@ if [ -z "$RECOVERY" ] && [ -z "$DTBS" ]; then
     echo "Building RAMDisk..."
     echo "-----------------------------------------------"
     pushd build/ramdisk > /dev/null
-     find . ! -name . | LC_ALL=C sort | cpio -o -H newc -R root:root | gzip > ../out/$MODEL/ramdisk.cpio.gz || abort
+    find . ! -name . | LC_ALL=C sort | cpio -o -H newc -R root:root | gzip > ../out/$MODEL/ramdisk.cpio.gz || abort
     popd > /dev/null
     echo "-----------------------------------------------"
 
     # Create boot image
     echo "Creating boot image..."
     echo "-----------------------------------------------"
-     ./toolchain/mkbootimg --base $BASE --board $BOARD --cmdline "$CMDLINE" --dtb $DTB_PATH \
+    ./toolchain/mkbootimg --base $BASE --board $BOARD --cmdline "$CMDLINE" --dtb $DTB_PATH \
     --dtb_offset $DTB_OFFSET --hashtype $HASHTYPE --header_version $HEADER_VERSION --kernel $KERNEL_PATH \
     --kernel_offset $KERNEL_OFFSET --os_patch_level $OS_PATCH_LEVEL --os_version $OS_VERSION --pagesize $PAGESIZE \
     --ramdisk $RAMDISK --ramdisk_offset $RAMDISK_OFFSET \
@@ -236,7 +253,7 @@ if [ -z "$RECOVERY" ] && [ -z "$DTBS" ]; then
     DATE=`date +"%d-%m-%Y_%H-%M-%S"`
 
     if [[ "$KSU_OPTION" == "y" ]]; then
-        NAME="$version"_"$MODEL"_UNOFFICIAL_KSU_"$DATE".zip
+        NAME="$version"_"$MODEL"_UNOFFICIAL_KSU_NEXT_"$DATE".zip
     else
         NAME="$version"_"$MODEL"_UNOFFICIAL_"$DATE".zip
     fi
