@@ -13,7 +13,7 @@
 #include "ra.h"
 
 #define FVMAP_SIZE		(SZ_8K)
-#define STEP_UV			(6250)
+#define STEP_UV			(6000)
 
 void __iomem *fvmap_base;
 void __iomem *sram_fvmap_base;
